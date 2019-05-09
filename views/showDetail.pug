@@ -1,0 +1,63 @@
+extends common
+block bodyNode
+    include public/nav
+    span &nbsp;
+    .container
+        .row
+            .col-md-10.col-md-offset-1.articleComment
+                .row.showDetail
+                    .col-md-2.text-center
+                        span #{topic.users_id.nick}
+                        //img(src=)
+                        //p #{topic.users.photo}
+                    .col-md-10
+                        .title #{topic.title}
+                        hr
+                        .content #{topic.content}
+                        .dateTime.text-right
+                            -if(userNick){
+                                -if(isZan){
+                                    a(href="/cancelPraise/" + topic._id, style="color:#ff5857;"): span.glyphicon.glyphicon-thumbs-up
+                                    span &nbsp;&nbsp;
+                                -}else{
+                                    a(href="/praise/" + topic._id): span.glyphicon.glyphicon-thumbs-up
+                                    span &nbsp;&nbsp
+                                -}
+                                -if(collection){
+                                    a(href="/notCollection/" + topic._id,style="color:#ff5857;"): span.glyphicon.glyphicon-star
+                                    span &nbsp;&nbsp;
+                                -}else{
+                                    a(href="/collection/" + topic._id): span.glyphicon.glyphicon-star
+                                    span &nbsp;&nbsp;
+                                -}
+                            -}
+                            span #{topic.issueDate.toLocaleString()}
+        .row
+            span &nbsp;
+        .row
+            .col-md-10.well.col-md-offset-1
+                h3 发布评论
+                -if(userNick){
+                    form.form-horizontal.releaseTopic(method='post', action="/releaseTopic")
+                        .form-group
+                            .col-md-3.text-right
+                                label.control-label(for='topicContent') 评论内容:
+                            .col-md-6
+                                textarea#topicContent.form-control(type="text",name="topicContent",rows="10")
+                            .col-md-3.help-block
+                        .form-group
+                            .col-md-6.col-md-offset-3
+                            button.btn.btn-primary 发布评论
+                -}else{
+                    form.form-horizontal(method='post',action='postComments')
+                        .form-group
+                            .col-md-3.text-right
+                                label.control-label 评论内容:
+                            .col-md-6
+                                textarea.form-control(type="text",rows="10",disabled="desabled")
+                            .col-md-3.help-block
+                        .form-group
+                            .col-md-6.col-md-offset-3
+                                button.btn.btn-primary(disabled="desabled") 发布评论
+                -}
+    include public/copyright

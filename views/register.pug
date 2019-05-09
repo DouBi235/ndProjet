@@ -1,0 +1,44 @@
+extends common
+block bodyNode
+    include public/nav
+    .container
+        .row
+            .col-md-8.col-md-offset-2.thumbnail(style="margin-top:50px;")
+                h3 用户注册
+                hr
+                form.form-horizontal.register(method="post",action="/registerDeal")
+                    .form-group
+                        .col-md-2.text-right
+                            label.control-label(for='phone') 手机号码:
+                        .col-md-6
+                            .input-group
+                                .input-group-addon
+                                    span.glyphicon.glyphicon-phone
+                                input#phone.form-control(type="text", name="phone")
+                        .col-md-4.help-block
+
+                    .form-group
+                        .col-md-2.text-right
+                            label.control-label(for='password') 设置密码:
+                        .col-md-6
+                            .input-group
+                                .input-group-addon
+                                    span.glyphicon.glyphicon-lock
+                                input#password.form-control(type="password", name="password")
+                        .col-md-4.help-block
+
+                    .form-group
+                        .col-md-2.text-right
+                            label.control-label(for='confirm') 手机号码:
+                        .col-md-6
+                            .input-group
+                                .input-group-addon
+                                    span.glyphicon.glyphicon-ok
+                                input#confirm.form-control(type="password", name="confirm")
+                        .col-md-4.help-block
+                    .form-group
+                        .col-md-6.col-md-offset-2
+                            button.btn.btn-primary 确认注册
+
+
+    include public/copyright

@@ -1,0 +1,35 @@
+extends common
+block bodyNode
+    script(type="text/javascript").
+        $(function(){
+            $("a.list-group-item").eq(4).css("background-color","#a7d6f1")
+        })
+    include public/nav
+    .container
+        .row
+            .col-md-3
+                include public/manageList
+            .col-md-9.thumbnail.rightContent
+                h2 帖子分类 >> 分类修改
+                .well 您可以在本页面操作帖子分类
+                form.form-horizontal.topicClassEdit(method="post" ,action="/manage/topicClassEditInfo/" +_id)
+                    .form-group
+                        .col-md-3.text-right
+                            label.control-label(for='topicClass') 修改帖子分类名称：
+                        .col-md-6
+                            input#topicClass.form-control(type="text", name="topicClass",value=className)
+                        .col-md-3.help-block
+
+                    .form-group
+                        .col-md-3.text-right
+                            label.control-label(for='topicClassDescription') 修改帖子分类描述：
+                        .col-md-6
+                            textarea#topicClassDescription.form-control(rows="10",name="topicClassDescription") #{description}
+                        .col-md-3.help-block
+                    .form-group
+                        .col-md-6.col-md-offset-3
+                            button.btn.btn-primary 确认添加
+
+
+
+    include ../public/copyright

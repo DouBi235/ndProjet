@@ -1,0 +1,19 @@
+extends common
+block bodyNode
+    script(type="text/javascript").
+        $(function(){
+            $("a.list-group-item").eq(1).addClass("active")
+        })
+    include ../public/nav
+    .container
+        .row
+            .col-md-3
+                include public/orderList
+            .col-md-9.rightContent
+                h3 我的帖子 >> 编辑帖子
+                .well 您可以在本页面对您所选的帖子进行编辑
+                h3 删除成功
+                ul
+                    li 帖子删除修改成功！
+                    li 您可以返回<a href='/users/myTopic'>我的帖子</a>
+    include ../public/copyright

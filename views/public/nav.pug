@@ -1,0 +1,46 @@
+#loginModal.modal.fade
+    .modal-dialog
+        .modal-content
+            .modal-header
+                span.glyphicon.glyphicon-user
+                span.close(data-dismiss="modal") &times;
+            .modal-body
+                form.form-horizontal.userLogin(method="post", action="loginDeal")
+                    .form-group
+                        .col-md-3.text-right
+                            label.control-label(for="account") 登录账号:
+                        .col-md-8
+                            .input-group
+                                .input-group-addon
+                                    span.glyphicon.glyphicon-phone
+                                input#account.form-control(type="text", name="account")
+                    .form-group
+                        .col-md-3.text-right
+                            label.control-label(for="pwd") 登录密码:
+                        .col-md-8
+                            .input-group
+                                .input-group-addon
+                                    span.glyphicon.glyphicon-lock
+                                input#pwd.form-control(type="password", name="pwd")
+                    .form-group.errorShow
+                        .col-md-8.col-md-offset-3.help-block &nbsp;
+
+            .modal-footer
+                button.btn.btn-primary 登录
+                a.btn.btn-danger(data-dismiss="modal") 取消
+
+
+.navbar.navbar-inverse.navbar-static-top
+    .container
+        .navbar-header
+            a.navbar-link.navbar-brand(href="/") HTML5前段开发技术论坛
+        .navbar-text.navbar-right
+            -if(userNick){
+                span 你好，#{userNick}&nbsp;&nbsp;
+                a.navbar-link(href='/users') 个人中心&nbsp;&nbsp;
+                a.navbar-link(href='/users/safeExit') 安全退出
+            -}else{
+                a.navbar-link(href="#loginModal",data-toggle="modal") 登录
+                span &nbsp;&nbsp;
+                a.navbar-link(href="/register") 注册
+            -}

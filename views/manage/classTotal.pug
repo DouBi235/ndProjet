@@ -1,0 +1,19 @@
+extends common
+block bodyNode
+    script(type="text/javascript", src="/javascripts/echarts.js")
+    script(type="text/javascript", src="/javascripts/myCharts.js")
+    script(type="text/javascript").
+        $(function(){
+            $("a.list-group-item").eq(11).css("background-color","#a7d6f1")
+        })
+    include public/nav
+    .container
+        .row
+            .col-md-3
+                include public/manageList
+            .col-md-9.thumbnail.rightContent
+                h2 分类统计
+                .well 您可以在本页面查看分类发帖统计
+                div#myCharts
+    script(type="text/javascript", src="/javascripts/data.json")
+    include ../public/copyright

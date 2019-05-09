@@ -1,0 +1,37 @@
+extends common
+block bodyNode
+    script(type="text/javascript").
+        $(function(){
+            $("a.list-group-item").eq(1).css("background-color","#a7d6f1")
+        })
+    include public/nav
+    .container
+        .row
+            .col-md-3
+                include public/manageList
+            .col-md-9.thumbnail.rightContent
+                h2 查询用户信息
+                .well 您可以在本页面查询所注册的用户信息
+                ul.nav.nav-tabs
+                    li: a(href="/manage/queryUsers") 查询用户
+                    li.active: a(href="/manage/gagUsers") 已禁言用户
+                .table-responsive(style="margin-top:20px;")
+                    table.table.table-hover
+                        thead
+                            tr
+                                th 序号
+                                th 昵称
+                                th 性别
+                                th 年龄
+                                th 电话号码
+                                th 操作
+                        tbody
+                            -for(var i in temp)
+                                tr.text-center
+                                    td #{parseInt(i) + 1}
+                                    td #{temp[i].nick}
+                                    td #{temp[i].sex}
+                                    td #{temp[i].age}
+                                    td #{temp[i].phone}
+                                    td: a(href="/manage/cancelGag/" + temp[i]._id) 取消禁言
+    include ../public/copyright

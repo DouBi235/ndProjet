@@ -1,0 +1,24 @@
+.list-group
+    a.list-group-item.text-center.active(href="") 管理员操作命令列表
+    a.btn-primary.list-group-item(href=""): strong 管理员首页
+    a.list-group-item(href="#")
+        span.glyphicon.glyphicon-list-alt
+        strong 发帖管理
+    a.btn-primary.list-group-item.options(href="/manage/topicAudit") 审核帖子
+    a.btn-primary.list-group-item.options(href="/manage/topicClass") 帖子分类
+    a.list-group-item(href="#")
+        span.glyphicon.glyphicon-user
+        strong 用户管理
+    a.btn-primary.list-group-item.options(href="/manage/totalUsers") 统计注册用户
+    a.btn-primary.list-group-item.options(href="/manage/queryUsers") 查询用户信息
+    a.list-group-item(href="#")
+        span.glyphicon.glyphicon-signal
+        strong 数据统计
+    a.btn-primary.list-group-item.options(href="/manage/articleDayTotal") 日发帖统计
+    a.btn-primary.list-group-item.options(href="") 月发帖统计
+    a.btn-primary.list-group-item.options(href="/manage/clasTotal")  分类统计
+    a.list-group-item(href="#")
+        span.glyphicon.glyphicon-cog
+        strong 系统管理
+    a.btn-primary.list-group-item.options(href="/manage/adminPasswordModify") 修改登录密码
+    a.btn-primary.list-group-item.options(href="/manage/adminExit") 安全退出

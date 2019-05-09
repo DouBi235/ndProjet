@@ -1,0 +1,38 @@
+extends common
+block bodyNode
+    script(type="text/javascript").
+        $(function(){
+            $("a.list-group-item").eq(3).css("background-color","#a7d6f1")
+        })
+    include public/nav
+    .container
+        .row
+            .col-md-3
+                include public/manageList
+            .col-md-9.rightContent
+                h2 发帖管理 >> 待审核帖子
+                .well 您可以在本页对用户的发帖进行审核
+                ul.nav.nav-tabs
+                    li.active: a(href="/manage/topicAudit") 待审核帖子
+                    li: a(href='/manage/topicPassed') 已通过帖子
+                    li: a(href='/manage/topicNotPassed') 未未通过帖子
+                table.table.table-hover
+                    thead
+                        tr
+                            th 发帖人
+                            th 发帖日期
+                            th 帖子标题
+                            th 所在分类
+                            th 帖子操作
+                    tbody
+                        -for(var i in temp)
+                            tr.text-center
+                                td #{temp[i].users_id.nick}
+                                td #{temp[i].issueDate.toLocaleString()}
+                                td: a(href='/manage/topicDetails/' + temp[i]._id, title="查看详情") #{temp[i].title}
+                                td #{temp[i].classId.className}
+                                td
+                                    a(href='/manage/topicThrough/' + temp[i]._id) 通过审核
+                                    span &nbsp;|&nbsp;
+                                    a(href='/manage/topicNotThrough/' + temp[i]._id) 未通过审核
+    include ../public/copyright

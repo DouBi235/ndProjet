@@ -1,0 +1,39 @@
+extends common
+block bodyNode
+    script(type="text/javascript").
+        $(function(){
+            $("a.list-group-item").eq(3).css("background-color","#a7d6f1")
+        })
+    include ../public/nav
+    .container
+        .row
+            .col-md-3
+                include public/manageList
+            .col-md-9.rightContent
+                h2 发帖管理 >> 帖子详情
+                .well 您可以在本页查看用户发帖详情
+                .container(style="line-height:50px;")
+                    .row
+                        .col-md-3.text-right
+                            strong 发布人：
+                        .col-md-9.text-left #{temp[0].users_id.nick}
+                    .row
+                        .col-md-3.text-right
+                            strong 发布时间：
+                        .col-md-9.text-left #{temp[0].issueDate}
+                    .row
+                        .col-md-3.text-right
+                            strong 帖子标题：
+                        .col-md-9.text-left #{temp[0].title}
+                    .row
+                        .col-md-3.text-right
+                            strong 帖子内容：
+                        .col-md-9.text-left #{temp[0].content}
+                    .row
+                        .col-md-3.text-right
+                            strong 所在分类：
+                        .col-md-9.text-left #{temp[0].classId.className}
+                    .row
+                        .col-md-9.col-md-offset-3
+                            a.btn.btn-primary(href='/manage/topicAudit') 返回
+    include ../public/copyright

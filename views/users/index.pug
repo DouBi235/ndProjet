@@ -1,0 +1,15 @@
+extends common
+block bodyNode
+    script(type="text/javascript").
+        $(function(){
+            $("a.list-group-item").eq(0).addClass("active")
+        })
+    include ../public/nav
+    .container
+        .row
+            .col-md-3
+                include public/orderList
+            .col-md-9.rightContent
+                h3 我的首页
+                .well 欢迎来到个人中心，您可以选择左侧命令列表进行操作
+    include ../public/copyright

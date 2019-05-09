@@ -1,0 +1,54 @@
+extends common
+block bodyNode
+    script(type="text/javascript").
+        $(function(){
+            $("a.list-group-item").eq(1).addClass("active")
+        })
+    include ../public/nav
+    .container
+        .row
+            .col-md-3
+                include public/orderList
+            .col-md-9.rightContent
+                h3 我的帖子
+                .well 您可以在本页面查看您所发布的帖子
+                .table-responsive
+                    table.table.table-hover
+                        thead
+                            tr
+                                th 序号
+                                th 发布日期
+                                th 帖子标题
+                                th 所在分类
+                                th 审核状态
+                                th 是否下架
+                                th 帖子操作
+                        tbody
+                            -for(var i in temp)
+                                tr.text-center
+                                    td #{parseInt(i) + 1}
+                                    td #{temp[i].issueDate.toLocaleString()}
+                                    td #{temp[i].title}
+                                    td #{temp[i].classId.className}
+                                    td
+                                         -if(temp[i].status==0){
+                                             strong 待审核
+                                         -}else if(temp[i].status==1){
+                                             strong 审核通过
+                                         -}else{
+                                             strong(style='color:red;') 审核未通过
+                                         -}
+                                    td
+                                         -if(temp[i].isOut){
+                                             a(href='/users/topicTheshelves/' + temp[i]._id) 上架
+                                         -}else{
+                                             a(href='/users/topicShelves/' + temp[i]._id) 下架
+                                         -}
+                                    td
+                                        a(href='/users/topicEdit/' + temp[i]._id): span.glyphicon.glyphicon-pencil
+                                        span &nbsp;&nbsp|&nbsp&nbsp
+                                        a(href='/users/topicDelete/' + temp[i]._id): sapm.glyphicon.glyphicon-trash
+
+
+
+    include ../public/copyright

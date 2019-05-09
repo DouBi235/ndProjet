@@ -1,0 +1,30 @@
+extends common
+block bodyNode
+    script(type="text/javascript").
+        $(function(){
+            $("a.list-group-item").eq(4).css("background-color","#a7d6f1")
+        })
+    include public/nav
+    #topicClassDelete.modal.fade
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    button.close(data-dismiss="modal") &times;
+                .modal-body 您确定删除此分类名称吗？
+                .modal-footer
+                    button.btn.btn-primary 确定
+                    a.btn.btn-danger(data-dismiss="modal") 取消
+    .container
+        .row
+            .col-md-3
+                include public/manageList
+            .col-md-9.thumbnail.rightContent
+                h2 帖子分类 >> 删除帖子
+                .well 您可以在本页面操作帖子分类
+                ul
+                    li 您所选的帖子分类删除成功！
+                    li 您可以<a href="/manage/topicClass">返回</a>继续操作帖子分类
+
+
+
+    include ../public/copyright

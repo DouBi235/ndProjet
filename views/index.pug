@@ -1,0 +1,121 @@
+extends common
+block bodyNode
+  include public/nav
+  #lunbo.carousel.slide
+    .carousel-inner
+      .item.active
+        img(src="images/blog-1.jpg")
+        .carousel-caption
+          h3 第一页
+
+      .item
+        img(src="images/blog-2.jpg")
+        .carousel-caption
+          h3 第一页
+
+      .item
+        img(src="images/blog-3.jpg")
+        .carousel-caption
+          h3 第一页
+
+      .item
+        img(src="images/blog-4.jpg")
+        .carousel-caption
+          h3 第一页
+      a.carousel-control.left(data-slide='prev', href="#lunbo")
+        span.glyphicon.glyphicon-chevron-left
+      a.carousel-control.right(data-slide='next', href="#lunbo")
+        span.glyphicon.glyphicon-chevron-right
+      ol.carousel-indicators
+        li.active(data-target='#lunbo' ,data-slide-to='0')
+        li(data-target='#lunbo' ,data-slide-to='1')
+        li(data-target='#lunbo' ,data-slide-to='2')
+        li(data-target='#lunbo' ,data-slide-to='3')
+  .container
+    .col-md-12
+      -for(var i=0;i<itemAll.length;i++){
+        ul.list-group
+          li.list-group-item.list-group-item-info
+            .row
+              .col-md-1
+                span.glyphicon.glyphicon-th-large
+                span &nbsp;主题
+              .col-md-7: strong #{itemAll[i].className}
+          li.list-group-item.list-group-item-info
+            .row
+              .col-md-1
+                spam.glyphicon.glyphicon-volume-up
+                span &nbsp;描述
+              .col-md-7.text-left #{itemAll[i].description}
+          -for(var j=0;j<itemAll[i].content.length;j++){
+            -if(itemAll[i].content[j].status==1 && itemAll[i].content[j].isOut==false){
+              li.list-group-item
+                .row
+                  .col-md-1
+                    span.badge(title='点赞数/') #{itemAll[i].content[j].likes}
+                  .col-md-7
+                    span: a(href="/showDetail/" + itemAll[i].content[j]._id) #{itemAll[i].content[j].title}
+                  .col-md-4.text-right(style="color:#999999;") #{itemAll[i].content[j].issueDate.toLocaleString()}
+            -}
+          -}
+      -}
+    .row.thumbnail
+      .col-md-8
+        h3 发布帖子
+        -if(userNick){
+            form.form-horizontal.releaseTopic(method='post', action="/releaseTopic")
+              .form-group
+                .col-md-3.text-right
+                  label.control-label(for='topicClass') 帖子分类：
+                .col-md-6
+                  select#topicClass.form-control(name="topicClass")
+                    option(value="0",disabled,selected='selected') 请选择帖子分类
+                    -for(var i in temp)
+                      option(value=temp[i]._id) #{temp[i].className}
+                .col-md-3.help-block
+
+              .form-group
+                  .col-md-3.text-right
+                    label.control-label(for='topicTitle') 贴子标题:
+                  .col-md-6
+                    input#topicTitle.form-control(type="text", name="topicTitle")
+                  .col-md-3.help-block
+
+              .form-group
+                  .col-md-3.text-right
+                    label.control-label(for='topicContent') 贴子内容:
+                  .col-md-6
+                    textarea#topicContent.form-control(type="text",name="topicContent",rows="10")
+                  .col-md-3.help-block
+              .form-group
+                  .col-md-6.col-md-offset-3
+                    button.btn.btn-primary 确认发帖
+        -}else{
+            form.form-horizontal(method='post')
+              .form-group
+                .col-md-3.text-right
+                  label.control-label 帖子分类：
+                .col-md-6
+                  select.form-control(disabled="desabled")
+                    -for(var i in temp)
+                      option(value=temp[i]._id) #{temp[i].className}
+                .col-md-3.help-block
+
+              .form-group
+                .col-md-3.text-right
+                  label.control-label 贴子标题:
+                .col-md-6
+                  input.form-control(type="text",disabled="desabled")
+                .col-md-3.help-block
+
+              .form-group
+                .col-md-3.text-right
+                  label.control-label 贴子内容:
+                .col-md-6
+                  textarea.form-control(type="text",rows="10",disabled="desabled")
+                .col-md-3.help-block
+              .form-group
+                .col-md-6.col-md-offset-3
+                  button.btn.btn-primary(disabled="desabled") 确认发帖
+        -}
+  include public/copyright

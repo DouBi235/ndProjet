@@ -1,0 +1,61 @@
+extends common
+block bodyNode
+    script(type="text/javascript").
+        $(function(){
+            $("a.list-group-item").eq(4).css("background-color","#a7d6f1")
+        })
+    include public/nav
+    #topicClassDelete.modal.fade
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    button.close(data-dismiss="modal") &times;
+                .modal-body 您确定删除此分类名称吗？
+                .modal-footer
+                    button.btn.btn-primary 确定
+                    a.btn.btn-danger(data-dismiss="modal") 取消
+    .container
+        .row
+            .col-md-3
+                include public/manageList
+            .col-md-9.thumbnail.rightContent
+                h2 帖子分类
+                .well 您可以在本页面操作帖子分类
+                form.form-horizontal.topicClass(method="post" ,action="/manage/topicClassInfo")
+                    .form-group
+                        .col-md-3.text-right
+                            label.control-label(for='topicClass') 添加帖子分类名称：
+                        .col-md-6
+                            input#topicClass.form-control(type="text", name="topicClass")
+                        .col-md-3.help-block
+
+                    .form-group
+                        .col-md-3.text-right
+                            label.control-label(for='topicClassDescription') 添加帖子分类描述：
+                        .col-md-6
+                            textarea#topicClassDescription.form-control(name="topicClassDescription")
+                        .col-md-3.help-block
+                    .form-group
+                        .col-md-6.col-md-offset-3
+                            button.btn.btn-primary 确认添加
+                .table-responsive
+                    table.table.table-hover
+                        thead
+                            tr
+                                th 序号
+                                th 分类名称
+                                th 分类描述
+                                th 操作
+                                th 删除
+                        tbody
+                            -for(var i in temp)
+                                tr.text-center
+                                    td #{parseInt(i)+1}
+                                    td #{temp[i].className}
+                                    td #{temp[i].description}
+                                    td: a(href='/manage/topicClassEdit/' + temp[i]._id): span.glyphicon.glyphicon-pencil
+                                    td: form.form-horizontal(method='post', action='/manage/topicClassDelete/' + temp[i]._id): a(href="#topicClassDelete", data-toggle="modal"): span.glyphicon.glyphicon-trash
+
+
+
+    include ../public/copyright

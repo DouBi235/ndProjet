@@ -1,0 +1,23 @@
+extends common
+block bodyNode
+    script(type="text/javascript").
+        $(function(){
+            $("a.list-group-item").eq(3).addClass("active")
+        })
+    include ../public/nav
+    .container
+        .row
+            .col-md-3
+                include public/orderList
+            .col-md-9.rightContent
+                h3 完善个人信息 >> 上传头像
+                .well 您可以在本页面实现对您的个人信息进行修改
+                ul.nav.nav-tabs
+                    li: a(href="/users/personalInfoModify") 完善个人信息
+                    li.active: a(href="/users/uploadPhoto") 上传头像
+                form.form-horizontal.uploadPhoto(method="post",action="/users/uploadPhotoDeal", enctype="multipart/form-data", style="margin-top:20px;")
+                    img.img-circle.img-thumbnail(src='/images/photo/' + photo,width="200")
+                    input#ph.hidden(type="file", name="ph")
+                    label.btn.btn-primary(for="ph", style="margin-left:20px;") 上传头像
+
+    include ../public/copyright

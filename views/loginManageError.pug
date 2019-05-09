@@ -1,0 +1,11 @@
+extends manage/common
+block bodyNode
+    include manage/public/nav
+    .container
+        .row
+            .col-md-8.col-md-offset-2.thumbnail(style="margin-top:80px;padding:20px;")
+                h3 管理员登录
+                ul
+                    li 登录失败，您输入的账号或密码有误！
+                    li 您可以 <a href='/login'>返回</a> 重新登陆
+    include public/copyright

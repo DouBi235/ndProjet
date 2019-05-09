@@ -1,0 +1,79 @@
+extends common
+block bodyNode
+    script(type="text/javascript").
+        $(function(){
+            $("a.list-group-item").eq(3).addClass("active")
+        })
+    include ../public/nav
+    .container
+        .row
+            .col-md-3
+                include public/orderList
+            .col-md-9.rightContent
+                h3 完善个人信息
+                .well 您可以在本页面实现对您的个人信息进行修改
+                ul.nav.nav-tabs
+                    li.active: a(href="/users/personalInfoModify") 完善个人信息
+                    li: a(href="/users/uploadPhoto") 上传头像
+                form.form-horizontal.modifyInfo(method="post", action='/users/modifyPersonalInfoDeal/' + _id, style="margin-top:30px;")
+                    .form-group
+                        .col-md-3.text-right
+                            label.control-label(for='phone') 手机号码:
+                        .col-md-6
+                            input#phone.form-control(type="text",readonly='readonly',value=phone)
+                        .col-md-3.help-block
+                    .form-group
+                        .col-md-3.text-right
+                            label.control-label(for='accountNick') 账号昵称:
+                        .col-md-6
+                            input#accountNick.form-control(type="text",name="nick",value=nick)
+                        .col-md-3.help-block
+                    .form-group
+                        .col-md-3.text-right
+                            label.control-label 选择性别:
+                        .col-md-6
+                            -if(sex=="男"){
+                                label.radio-inline
+                                    input(type="radio",name='sex',checked,value="男")
+                                    span 男
+                                label.radio-inline
+                                    input(type="radio",name='sex',value="女")
+                                    span 女
+                            -}else{
+                                label.radio-inline
+                                    input(type="radio",name='sex',value="男")
+                                    span 男
+                                label.radio-inline
+                                    input(type="radio",name='sex',checked,valule="女")
+                                    span 女
+                            -}
+                        .col-md-3.help-block
+                    .form-group
+                        .col-md-3.text-right
+                            label.control-label(for='phone') 设置年龄:
+                        .col-md-6
+                            input#phone.form-control(type="text",name="age",value=age)
+                        .col-md-3.help-block
+                    .form-group
+                        .col-md-3.text-right
+                            label.control-label(for='phone') 设置住址:
+                        .col-md-6
+                            input#phone.form-control(type="text",name="address",value=address)
+                        .col-md-3.help-block
+                    .form-group
+                        .col-md-3.text-right
+                            label.control-label(for='phone') QQ账号:
+                        .col-md-6
+                            input#phone.form-control(type="text",name="QQ",value=qq)
+                        .col-md-3.help-block
+                    .form-group
+                        .col-md-3.text-right
+                            label.control-label(for='phone') 电子邮箱:
+                        .col-md-6
+                            input#phone.form-control(type="text",name="email",value=email)
+                        .col-md-3.help-block
+                    .form-group
+                        .col-md-6.col-md-offset-3
+                            button.btn.btn-primary 确认修改
+
+    include ../public/copyright

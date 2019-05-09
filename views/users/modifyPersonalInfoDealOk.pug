@@ -1,0 +1,19 @@
+extends common
+block bodyNode
+    script(type="text/javascript").
+        $(function(){
+            $("a.list-group-item").eq(3).addClass("active")
+        })
+    include ../public/nav
+    .container
+        .row
+            .col-md-3
+                include public/orderList
+            .col-md-9.rightContent
+                h3 完善个人信息
+                .well 您可以在本页面实现对您的个人信息进行修改
+                h3 完善个人信息成功
+                ul
+                    li 个人信息修改成功！
+                    li 您可以<a href='/users/personalInfoModify'>返回</a>对您的个人信息进行修改
+    include ../public/copyright

@@ -1,0 +1,19 @@
+var option = {
+  title: {
+    text: 'HTML5前段开发技术论坛'
+  },
+  tooltip: {},
+  legend: {
+    data:['发帖统计']
+  },
+  xAxis: {
+    data: []
+  },
+  yAxis: {},
+  series: [{
+    name: '发帖统计',
+    type: 'bar',
+    data: []
+  }]
+}
+

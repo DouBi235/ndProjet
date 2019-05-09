@@ -1,0 +1,47 @@
+a,a:hover{
+    text-decoration:none;
+}
+.copyRight{
+    height:80px;
+    background-color:#dedede;
+    line-height:80px;
+}
+.navbar{
+    margin-bottom:0;
+}
+.errorShow{
+    margin:-10px 0 -10px 0;
+}
+.help-block{
+    color:red;
+}
+.showDetail{
+    border:solid 1px gray;
+}
+.showDetail .col-md-10{
+    border-left:solid 1px gray;
+    padding:0;
+}
+.showDetail .col-md-10 .title{
+    color:#000;
+    font-weight:bold;
+    font-size:20px;
+    height:20px;
+    line-height:40px;
+    padding-left:10px;
+    box-sizing: border-box;
+}
+.showDetail .col-md-10 .content{
+    min-height:200px;
+    padding:0 10px 10px 10px;
+}
+.showDetail .col-md-10 .dateTime{
+    padding:0 10px 10px 0;
+    color:#999999;
+}
+.showDetail .col-md-10 .dateTime a{
+    color:#999999;
+}
+.articleComment{
+    border-radius:10px;
+}

@@ -1,0 +1,25 @@
+extends manage/common
+block bodyNode
+    include manage/public/nav
+    .container
+        .row
+          .col-md-8.col-md-offset-2.thumbnail(style="margin-top:80px;padding:20px;")
+              h3 管理员登录
+              form.form-horizontal.manageLogin(method="post", action='/LoginManageDeal')
+                  .form-group
+                      .col-md-3.text-right
+                          label.control-label(for='account') 管理员账号：
+                      .col-md-6
+                          input#account.form-control(type="text", name="account")
+                      .col-md-3.help-block
+
+                  .form-group
+                      .col-md-3.text-right
+                          label.control-label(for='pwd') 管理员密码：
+                      .col-md-6
+                          input#pwd.form-control(type="password", name="pwd")
+                      .col-md-3.help-block
+                  .form-group
+                      .col-md-6.col-md-offset-3
+                          button.btn.btn-primary 登录
+    include public/copyright

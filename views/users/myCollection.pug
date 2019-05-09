@@ -1,0 +1,28 @@
+extends common
+block bodyNode
+    script(type="text/javascript").
+        $(function(){
+            $("a.list-group-item").eq(2).addClass("active")
+        })
+    include ../public/nav
+    .container
+        .row
+            .col-md-3
+                include public/orderList
+            .col-md-9.rightContent
+                h3 我的收藏
+                .well 您可以在本页面查看您所收藏的帖子
+                .table-responsive
+                    table.table.table-hover
+                        thead
+                            tr
+                                th 序号
+                                th 贴子标题
+                                th 操作
+                        tbody
+                            -for(var i in temp)
+                                tr.text-center
+                                    td #{parseInt(i)+1}
+                                    td: a(href="/users/topicDetails/" + temp[i].article_id._id) #{temp[i].article_id.title}
+                                    td: a(href="/users/cancelSc/" + temp[i]._id) 取消收藏
+    include ../public/copyright
